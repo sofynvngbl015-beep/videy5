@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070812">
+<title>🎥TERNYATA SUHU</title>
+<meta name="description" content="Tonton video terbaru dan video lainnya.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="🎥TERNYATA SUHU">
+<meta property="og:description" content="Tonton video terbaru dan video lainnya.">
+<meta property="og:image" content="https://jpcdn.it/img/556628b3b741fa4b602568918d9607cd.jpg">
+<meta property="og:image:alt" content="🎥TERNYATA SUHU">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Video Player">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🎥TERNYATA SUHU">
+<meta name="twitter:description" content="Tonton video terbaru dan video lainnya.">
+<meta name="twitter:image" content="https://jpcdn.it/img/556628b3b741fa4b602568918d9607cd.jpg">
+
+<style>
+:root{--bg:#070812;--panel:rgba(18,20,35,.84);--text:#f7f8ff;--muted:#9ca3b8;--line:rgba(255,255,255,.09);--purple:#8b5cf6;--blue:#38bdf8;--pink:#ec4899;--radius:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{min-height:100vh;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,rgba(139,92,246,.20),transparent 30%),radial-gradient(circle at 90% 10%,rgba(56,189,248,.13),transparent 28%),radial-gradient(circle at 50% 65%,rgba(236,72,153,.08),transparent 32%),linear-gradient(145deg,#070812 0%,#0b0d18 48%,#070812 100%)}
+button{font:inherit}
+.topbar{position:sticky;top:0;z-index:30;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(7,8,18,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand-mark{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--blue));box-shadow:0 8px 25px rgba(139,92,246,.28)}
+.share-top{width:40px;height:40px;border:1px solid var(--line);border-radius:13px;color:#fff;background:rgba(255,255,255,.05);cursor:pointer}
+main{width:min(1060px,100%);margin:auto;padding:22px 16px 52px}
+.player-shell{position:relative;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.10);border-radius:var(--radius);box-shadow:0 25px 80px rgba(0,0,0,.45),0 0 55px rgba(99,102,241,.08)}
+video{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:#000;cursor:pointer}
+.video-top-gradient{position:absolute;inset:0 0 auto;height:105px;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.55),transparent)}
+.video-bottom-gradient{position:absolute;inset:auto 0 0;height:120px;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.72),transparent)}
+.player-badge{position:absolute;top:13px;left:13px;z-index:3;padding:7px 10px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(8,9,18,.62);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);pointer-events:none}
+.center-play-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10;width:78px;height:78px;border:1px solid rgba(255,255,255,.38);border-radius:50%;display:flex;align-items:center;justify-content:center;padding-left:5px;color:#fff;font-size:31px;background:rgba(0,0,0,.70);box-shadow:0 10px 35px rgba(0,0,0,.60),0 0 0 8px rgba(255,255,255,.05);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);cursor:pointer;transition:opacity .2s ease,transform .2s ease,background .2s ease}
+.center-play-btn:hover{background:rgba(0,0,0,.85);transform:translate(-50%,-50%) scale(1.06)}
+.center-play-btn:active{transform:translate(-50%,-50%) scale(.93)}
+.center-play-btn.hidden{opacity:0;pointer-events:none}
+.controls{position:absolute;left:14px;right:14px;bottom:12px;z-index:12;display:flex;align-items:center;gap:9px;opacity:1;visibility:visible;transition:opacity .25s ease,visibility .25s ease}
+.player-shell.controls-hidden .controls{opacity:0;visibility:hidden;pointer-events:none}
+.ctrl{width:40px;height:38px;border:1px solid rgba(255,255,255,.13);border-radius:11px;background:rgba(10,11,18,.64);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(10px)}
+.progress{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden;cursor:pointer}
+.progress-fill{width:0%;height:100%;background:linear-gradient(90deg,var(--purple),var(--blue));border-radius:99px}
+.time{font-size:11px;color:#fff;min-width:70px;text-align:center}
+.player-shell.is-fullscreen{border-radius:0;border:0;width:100vw;height:100vh;background:#000;display:flex;align-items:center;justify-content:center}
+.player-shell.is-fullscreen video{width:100%;height:100%;max-height:100vh;aspect-ratio:auto}
+.player-shell.is-fullscreen .controls{bottom:18px}
+.continue-overlay{position:absolute;inset:0;z-index:15;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,4,10,.66);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.continue-overlay.show{display:flex}
+.continue-box{width:min(430px,100%);padding:27px 23px 23px;text-align:center;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:radial-gradient(circle at 50% 0%,rgba(139,92,246,.22),transparent 52%),rgba(13,15,27,.94);box-shadow:0 25px 80px rgba(0,0,0,.55)}
+.ad-icon{width:48px;height:48px;margin:0 auto 14px;border-radius:15px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--blue));font-size:20px}
+.continue-box h2{font-size:21px;line-height:1.2}
+.continue-box p{color:var(--muted);font-size:13px;line-height:1.55;margin:9px 0 18px}
+.ad-button{display:block;width:100%;padding:12px 16px;border-radius:13px;color:#fff;font-weight:800;text-decoration:none;background:linear-gradient(135deg,var(--purple),#6366f1,var(--blue));box-shadow:0 10px 30px rgba(99,102,241,.25);border:0;cursor:pointer}
+.small-note{font-size:10px;color:#71778b;margin-top:10px}
+.info{padding:20px 2px 0}
+.title{font-size:clamp(21px,3vw,30px);line-height:1.2;letter-spacing:-.5px}
+.meta{margin-top:8px;color:var(--muted);font-size:13px}
+.divider{height:1px;background:var(--line);margin:22px 0 0}
+.collection{padding:24px 0 4px}
+.collection-heading{text-align:center;margin:0 auto 18px}
+.collection-heading h2{font-size:clamp(23px,5vw,30px);line-height:1.15;letter-spacing:-.5px}
+.collection-heading p{color:var(--muted);font-size:13px;margin-top:7px}
+.collection-banner{width:100%;min-height:105px;border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:18px 14px;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-decoration:none;background:linear-gradient(115deg,#1685ff 0%,#5569ff 38%,#9c3bea 68%,#df19bd 100%);box-shadow:0 12px 34px rgba(77,74,255,.24),inset 0 1px 0 rgba(255,255,255,.28);transition:transform .2s,filter .2s}
+.collection-banner:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.collection-banner strong{font-size:clamp(23px,5.5vw,31px);line-height:1.1;letter-spacing:.2px}
+.collection-banner span{font-size:14px;font-weight:750}
+footer{text-align:center;color:#73798c;font-size:12px;padding:18px 0 0}
+@media(max-width:700px){.topbar{height:58px;padding:0 12px}main{padding:12px 10px 40px}.player-shell{border-radius:15px}video{aspect-ratio:5/4}.controls{left:9px;right:9px;bottom:8px;gap:6px}.ctrl{width:36px;height:35px}.time{font-size:10px;min-width:56px}.info{padding-top:16px}.collection{padding:15px;border-radius:17px}.continue-box{padding:23px 17px 18px}.collection-banner strong{gap:7px;font-size:clamp(18px,5vw,25px)}.collection-banner .arrow{font-size:clamp(18px,5vw,25px)}.center-play-btn{width:66px;height:66px;font-size:27px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">▶</div><span>Video Player</span></div>
+  <button class="share-top" type="button" onclick="sharePage()" aria-label="Bagikan">↗</button>
+</header>
+
+<main>
+<section class="player-shell" id="playerShell">
+  <video id="video" playsinline preload="metadata" src="https://videotourl.com/videos/1792061231703-d45ded77-ceb1-4836-9762-4cfad13c03fe.mp4"></video>
+  <div class="video-top-gradient"></div>
+  <div class="video-bottom-gradient"></div>
+  <div class="player-badge">HD • Mobile Friendly</div>
+  <button id="centerPlayBtn" class="center-play-btn" type="button" aria-label="Putar video">▶</button>
+
+  <div class="continue-overlay" id="continueOverlay">
+    <div class="continue-box">
+      <div class="ad-icon">▶</div>
+      <h2>Lanjutkan Video</h2>
+      <p>Tonton iklan terlebih dahulu untuk melanjutkan video. Setelah tombol ditekan, iklan akan dibuka dan video dapat dilanjutkan.</p>
+      <a class="ad-button" id="adButton" href="https://uplcm.com/4/12006030" target="_blank" rel="noopener noreferrer" onclick="continueAfterAd()">Lanjutkan &amp; Tonton Iklan</a>
+      <div class="small-note">Iklan dibuka setelah kamu menekan tombol.</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="ctrl" id="playBtn" type="button" onclick="togglePlay()">▶</button>
+    <div class="progress" onclick="seekVideo(event)"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="time" id="time">0:00 / 0:00</div>
+    <button class="ctrl" type="button" onclick="toggleFullscreen()" aria-label="Fullscreen">⛶</button>
+  </div>
+</section>
+
+<section class="info">
+  <h1 class="title">Video Terbaru</h1>
+  <div class="meta">Nikmati video dengan tampilan nyaman di HP maupun desktop.</div>
+</section>
+<div class="divider"></div>
+
+<section class="collection" id="collection">
+  <div class="collection-heading">
+    <h2>✨ Video Lainnya</h2>
+    <p>Kumpulan video terbaru dan video pilihan</p>
+  </div>
+  <a class="collection-banner" href="https://uplcm.com/4/12006030" target="_blank" rel="noopener noreferrer">
+    <strong><span class="arrow">➡️</span> <span class="banner-title">KUMPULAN VIDEO</span> <span class="arrow">⬅️</span></strong>
+    <span>🎬 Lihat video lainnya di sini</span>
+  </a>
+</section>
+
+<footer>© 2026 • Video Player</footer>
+</main>
+
+<script>
+const video = document.getElementById("video");
+const shell = document.getElementById("playerShell");
+const playBtn = document.getElementById("playBtn");
+const centerPlayBtn = document.getElementById("centerPlayBtn");
+const progressFill = document.getElementById("progressFill");
+const timeEl = document.getElementById("time");
+const continueOverlay = document.getElementById("continueOverlay");
+
+/* Pemicu iklan dipertahankan: 20 dan 40 detik */
+let adGateCount = 0;
+const adGateTimes = [20, 40];
+
+function togglePlay() {
+  if (continueOverlay.classList.contains("show")) return;
+
+  if (video.paused) {
+    video.play().catch(() => {});
+  } else {
+    video.pause();
+  }
+}
+
+function updateCenterPlay() {
+  if (video.paused) {
+    centerPlayBtn.classList.remove("hidden");
+    centerPlayBtn.textContent = "▶";
+    centerPlayBtn.setAttribute("aria-label", "Putar video");
+  } else {
+    centerPlayBtn.textContent = "Ⅱ";
+    centerPlayBtn.setAttribute("aria-label", "Jeda video");
+    centerPlayBtn.classList.add("hidden");
+  }
+}
+
+centerPlayBtn.addEventListener("click", function(e) {
+  e.stopPropagation();
+  if (continueOverlay.classList.contains("show")) return;
+  togglePlay();
+});
+
+let controlsHideTimer;
+let centerButtonHideTimer;
+
+function showControls() {
+  shell.classList.remove("controls-hidden");
+  clearTimeout(controlsHideTimer);
+
+  if (!video.paused && !continueOverlay.classList.contains("show")) {
+    controlsHideTimer = setTimeout(() => {
+      if (!video.paused && !continueOverlay.classList.contains("show")) {
+        shell.classList.add("controls-hidden");
+      }
+    }, 2000);
+  }
+}
+
+function keepControlsVisible() {
+  clearTimeout(controlsHideTimer);
+  shell.classList.remove("controls-hidden");
+}
+
+video.addEventListener("click", function() {
+  if (continueOverlay.classList.contains("show")) return;
+
+  showControls();
+
+  if (!video.paused) {
+    centerPlayBtn.textContent = "Ⅱ";
+    centerPlayBtn.setAttribute("aria-label", "Jeda video");
+    centerPlayBtn.classList.remove("hidden");
+
+    clearTimeout(centerButtonHideTimer);
+    centerButtonHideTimer = setTimeout(() => {
+      if (!video.paused) centerPlayBtn.classList.add("hidden");
+    }, 2000);
+  } else {
+    updateCenterPlay();
+  }
+});
+
+video.addEventListener("play", () => {
+  playBtn.textContent = "Ⅱ";
+  updateCenterPlay();
+  showControls();
+});
+
+video.addEventListener("pause", () => {
+  playBtn.textContent = "▶";
+  clearTimeout(centerButtonHideTimer);
+  updateCenterPlay();
+  keepControlsVisible();
+});
+
+video.addEventListener("ended", () => {
+  updateCenterPlay();
+  keepControlsVisible();
+});
+
+video.addEventListener("loadedmetadata", () => {
+  timeEl.textContent = "0:00 / " + formatTime(video.duration);
+});
+
+video.addEventListener("timeupdate", () => {
+  if (video.duration) {
+    progressFill.style.width =
+      (video.currentTime / video.duration * 100) + "%";
+
+    timeEl.textContent =
+      formatTime(video.currentTime) + " / " + formatTime(video.duration);
+  }
+
+  if (
+    adGateCount < adGateTimes.length &&
+    video.currentTime >= adGateTimes[adGateCount]
+  ) {
+    video.pause();
+    adGateCount++;
+    continueOverlay.classList.add("show");
+    updateCenterPlay();
+    keepControlsVisible();
+  }
+});
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+
+  return minutes + ":" + secs;
+}
+
+function seekVideo(e) {
+  if (!video.duration || continueOverlay.classList.contains("show")) return;
+
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = Math.min(
+    1,
+    Math.max(0, (e.clientX - rect.left) / rect.width)
+  );
+
+  video.currentTime = pct * video.duration;
+  showControls();
+}
+
+function continueAfterAd() {
+  continueOverlay.classList.remove("show");
+
+  setTimeout(() => {
+    video.play().catch(() => {});
+  }, 350);
+}
+
+async function toggleFullscreen() {
+  try {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+      return;
+    }
+
+    if (shell.requestFullscreen) {
+      await shell.requestFullscreen();
+      return;
+    }
+
+    shell.classList.add("is-fullscreen");
+  } catch (e) {
+    shell.classList.toggle("is-fullscreen");
+  }
+}
+
+document.addEventListener("fullscreenchange", () => {
+  shell.classList.toggle(
+    "is-fullscreen",
+    document.fullscreenElement === shell
+  );
+});
+
+async function sharePage() {
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: document.title,
+        text: "Tonton video ini",
+        url: location.href
+      });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(location.href);
+      alert("Link halaman berhasil disalin");
+    } else {
+      prompt("Salin link halaman ini:", location.href);
+    }
+  } catch (e) {}
+}
+
+shell.addEventListener("pointerdown", (e) => {
+  if (e.target.closest("button, .progress, a")) return;
+  if (continueOverlay.classList.contains("show")) return;
+
+  showControls();
+
+  if (!video.paused) {
+    centerPlayBtn.textContent = "Ⅱ";
+    centerPlayBtn.setAttribute("aria-label", "Jeda video");
+    centerPlayBtn.classList.remove("hidden");
+
+    clearTimeout(centerButtonHideTimer);
+    centerButtonHideTimer = setTimeout(() => {
+      if (!video.paused) centerPlayBtn.classList.add("hidden");
+    }, 2000);
+  } else {
+    updateCenterPlay();
+  }
+});
+
+updateCenterPlay();
+</script>
+
+<!-- Histats tetap aktif -->
+<script type="text/javascript">
+var _Hasync = _Hasync || [];
+_Hasync.push(['Histats.start', '1,5043495,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+
+(function() {
+  var hs = document.createElement('script');
+  hs.type = 'text/javascript';
+  hs.async = true;
+  hs.src = ('https:' == document.location.protocol ? 'https://' : 'http://')
+    + 's10.histats.com/js15_as.js';
+
+  (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0])
+    .appendChild(hs);
+})();
+</script>
+
+<noscript>
+  <a href="/" target="_blank" rel="noopener noreferrer">
+    <img src="https://sstatic1.histats.com/0.gif?5043495&101"
+      alt="web tracker" border="0">
+  </a>
+</noscript>
+<!-- Histats END -->
+
+<!-- Popunder baru: zone 12006036 -->
+<script>
+(function(s) {
+  s.dataset.zone = '12006036';
+  s.src = 'https://al5sm.com/tag.min.js';
+})([document.documentElement, document.body]
+  .filter(Boolean)
+  .pop()
+  .appendChild(document.createElement('script')));
+</script>
+
+</body>
+</html>
